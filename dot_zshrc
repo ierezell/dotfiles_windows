@@ -23,9 +23,9 @@ export LANG='fr_FR.UTF-8'
 export LC_ALL='fr_FR.UTF-8'
 
 # LS COLORS
-source ~/.cache/wal/colors.sh
+# source ~/.cache/wal/colors.sh
 # ASDF
-. /opt/asdf-vm/asdf.sh
+# . /opt/asdf-vm/asdf.sh
 
 ###########
 # Aliases #
