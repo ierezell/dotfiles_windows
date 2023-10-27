@@ -45,7 +45,7 @@ local plugins = {
         "pyre",
 
         --rust
-        "rust-analyser",
+        "rust-analyzer",
         --misc
         "cspall",
       },
