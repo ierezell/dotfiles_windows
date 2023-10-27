@@ -21,10 +21,6 @@ local plugins = {
     end, -- Override to setup mason-lspconfig
   },
 
-  {
-    "simrat39/rust-tools.nvim",
-    ft = { "rust" },
-  },
   -- override plugin configs
   {
     "williamboman/mason.nvim",
@@ -90,7 +86,7 @@ local plugins = {
 
   {
     "simrat39/rust-tools.nvim",
-    ft = "rust",
+    ft = { "rust" },
   },
 
   {
