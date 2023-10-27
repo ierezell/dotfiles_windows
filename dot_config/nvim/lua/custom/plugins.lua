@@ -3,6 +3,12 @@ local overrides = require "custom.configs.overrides"
 ---@type NvPluginSpec[]
 local plugins = {
 
+  {
+    "nvim-telescope/telescope.nvim",
+    opts={
+      file_ignore_patterns = { "typings/pylance-stubs-unofficial","pylance-stubs-unofficial", "poetry.lock" },
+    }
+  },
   -- Override plugin definition options
   {
     "neovim/nvim-lspconfig",
