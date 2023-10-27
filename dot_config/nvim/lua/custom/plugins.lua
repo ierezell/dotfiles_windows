@@ -47,7 +47,7 @@ local plugins = {
         --rust
         "rust-analyzer",
         --misc
-        "cspall",
+        "cspell",
       },
     },
   },
