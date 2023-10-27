@@ -13,6 +13,11 @@ local on_attach_with_formating = function(client, bufnr)
   client.resolved_capabilities.document_range_formatting = true
 end
 
+lspconfig.null_ls.setup {
+  on_attach = on_attach_with_formating,
+  capabilities = capabilities,
+}
+
 lspconfig.pyright.setup {
   on_attach = on_attach_with_formating,
   capabilities = capabilities,
