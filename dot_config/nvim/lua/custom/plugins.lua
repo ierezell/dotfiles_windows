@@ -4,7 +4,6 @@ local overrides = require "custom.configs.overrides"
 local plugins = {
 
   -- Override plugin definition options
-
   {
     "neovim/nvim-lspconfig",
     dependencies = {
@@ -22,6 +21,10 @@ local plugins = {
     end, -- Override to setup mason-lspconfig
   },
 
+  {
+    "simrat39/rust-tools.nvim",
+    ft = { "rust" },
+  },
   -- override plugin configs
   {
     "williamboman/mason.nvim",
@@ -36,6 +39,7 @@ local plugins = {
         --python
         "black",
         "sourcery",
+        "mypy",
         "ruff",
         "ruff-lsp",
         "autopep8",
@@ -46,6 +50,7 @@ local plugins = {
 
         --rust
         "rust-analyzer",
+
         --misc
         "cspell",
       },
@@ -54,7 +59,19 @@ local plugins = {
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "json",
+        "python",
+        "rust",
+      },
+    },
   },
 
   {
@@ -73,7 +90,16 @@ local plugins = {
 
   {
     "simrat39/rust-tools.nvim",
-    ft = "rs",
+    ft = "rust",
+  },
+
+  {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    dependencies = "neovim/nvim-lspconfig",
+    init = function()
+      vim.g.rustfmt_autosave = 1
+    end,
   },
 
   -- To make a plugin not be loaded

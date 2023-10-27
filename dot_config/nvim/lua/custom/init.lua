@@ -5,3 +5,7 @@
 --   pattern = "*",
 --   command = "tabdo wincmd =",
 -- })
+require "core"
+
+vim.opt.spelllang="en,fr"
+vim.opt.spellsuggest="best,9"
