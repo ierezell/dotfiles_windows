@@ -25,7 +25,31 @@ local plugins = {
   -- override plugin configs
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason,
+    opts = {
+      ensure_installed = {
+        -- web
+        "html-lsp",
+        "prettier",
+        -- lua
+        "lua-language-server",
+        "stylua",
+        --python
+        "black",
+        "sourcery",
+        "ruff",
+        "ruff-lsp",
+        "autopep8",
+        "flake8",
+        "pyright",
+        "isort",
+        "pyre",
+
+        --rust
+        "rust-analyser",
+        --misc
+        "cspall",
+      },
+    },
   },
 
   {
