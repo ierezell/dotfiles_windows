@@ -71,6 +71,7 @@ local plugins = {
         "typescript",
         "json",
         "python",
+        "terraform",
         "rust",
       },
     },
@@ -114,6 +115,10 @@ local plugins = {
 
   {
     "rcarriga/nvim-dap-ui",
+  },
+
+  {
+    "hashivim/vim-terraform.git",
   },
   -- To make a plugin not be loaded
   -- {
