@@ -13,3 +13,11 @@ vim.opt.spellsuggest = "best,9"
 
 -- Lazygit
 vim.g.lazygit_floating_window_use_plenary = 0 -- use plenary.nvim to manage floating window if available
+
+-- Highlight on yank
+vim.cmd [[
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 80})
+augroup END
+]]
