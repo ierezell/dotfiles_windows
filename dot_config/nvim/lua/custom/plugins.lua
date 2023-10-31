@@ -5,10 +5,11 @@ local plugins = {
 
   {
     "nvim-telescope/telescope.nvim",
-    opts={
-      file_ignore_patterns = { "typings/pylance-stubs-unofficial","pylance-stubs-unofficial", "poetry.lock" },
-    }
+    opts = {
+      file_ignore_patterns = { "typings/pylance-stubs-unofficial", "pylance-stubs-unofficial", "poetry.lock" },
+    },
   },
+
   -- Override plugin definition options
   {
     "neovim/nvim-lspconfig",
@@ -35,9 +36,11 @@ local plugins = {
         -- web
         "html-lsp",
         "prettier",
+
         -- lua
         "lua-language-server",
         "stylua",
+
         --python
         "black",
         "sourcery",
@@ -77,10 +80,7 @@ local plugins = {
     },
   },
 
-  {
-    "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
-  },
+  { "nvim-tree/nvim-tree.lua", opts = overrides.nvimtree },
 
   -- Install a plugin
   {
@@ -91,10 +91,7 @@ local plugins = {
     end,
   },
 
-  {
-    "simrat39/rust-tools.nvim",
-    ft = { "rust" },
-  },
+  { "simrat39/rust-tools.nvim", ft = { "rust" } },
 
   {
     "rust-lang/rust.vim",
@@ -105,34 +102,44 @@ local plugins = {
     end,
   },
 
+  { "mfussenegger/nvim-dap" },
+
+  { "mfussenegger/nvim-dap-python" },
+
+  { "rcarriga/nvim-dap-ui" },
+
+  { "hashivim/vim-terraform" },
+  { "Exafunction/codeium.vim", event = "BufEnter" },
+
   {
-    "mfussenegger/nvim-dap",
+    "kdheepak/lazygit.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+    },
+    init = function()
+      require("telescope").load_extension "lazygit"
+    end,
+  },
+
+  { "nvim-lua/plenary.nvim", rm_default_opts = true },
+  {
+    "sindrets/diffview.nvim",
+    cmd = { "DiffviewOpen" }, -- add more commands here
+    config = function()
+      require("diffview").setup()
+    end,
   },
 
   {
-    "mfussenegger/nvim-dap-python",
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
   },
-
-  {
-    "rcarriga/nvim-dap-ui",
-  },
-
-  {
-    "hashivim/vim-terraform.git",
-  },
-  -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
-
-  -- All NvChad plugins are lazy-loaded by default
-  -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
-  -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
-  -- {
-  --   "mg979/vim-visual-multi",
-  --   lazy = false,
-  -- }
 }
 
 return plugins

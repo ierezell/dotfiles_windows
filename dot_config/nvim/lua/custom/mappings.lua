@@ -4,9 +4,16 @@ local M = {}
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
+    ["<leader>tt"] = { ":TroubleToggle <CR>", "toggle trouble" },
+    ["<leader>tw"] = { ":TroubleToggle workspace_diagnostics <CR>", "toggle trouble workspace" },
+    ["<leader>td"] = { ":TroubleToggle document_diagnostics <CR>", "toggle trouble document" },
+    ["<leader>tq"] = { ":TroubleToggle quickfix <CR>", "toggle trouble quickfix" },
+    ["<leader>tl"] = { ":TroubleToggle loclist <CR>", "toggle trouble loclist" },
+    ["gR"] = { ":TroubleToggle lsp_references <CR>", "toggle trouble references" },
+    ["<leader>gg"] = { ":LazyGit <CR>", "open lazygit" },
   },
   v = {
-    [">"] = { ">gv", "indent"},
+    [">"] = { ">gv", "indent" },
   },
 }
 
