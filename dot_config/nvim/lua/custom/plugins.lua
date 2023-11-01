@@ -12,8 +12,6 @@ local plugins = {
 
   { "nvim-tree/nvim-tree.lua", opts = overrides.nvimtree },
 
-  {"nvimtools/none-ls.nvim"},
-
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
