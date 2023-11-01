@@ -2,78 +2,105 @@ local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
-  { "nvim-lua/plenary.nvim" },
-
-  { "mfussenegger/nvim-dap-python", ft = "python" },
+  --- Default Core plugins
+  -- {
+  --   "nvim-lua/plenary.nvim",
+  --   "NvChad/base46",
+  --   "NvChad/ui",
+  --   "NvChad/nvterm",
+  --   "NvChad/nvim-colorizer.lua",
+  --   "nvim-tree/nvim-web-devicons",
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   "nvim-treesitter/nvim-treesitter",
+  --   "lewis6991/gitsigns.nvim",
+  --   "williamboman/mason.nvim",
+  --   "neovim/nvim-lspconfig",
+  --   "hrsh7th/nvim-cmp",
+  --   "L3MON4D3/LuaSnip",
+  --   "rafamadriz/friendly-snippets",
+  --   "windwp/nvim-autopairs",
+  --   "saadparwaiz1/cmp_luasnip",
+  --   "hrsh7th/cmp-nvim-lua",
+  --   "hrsh7th/cmp-nvim-lsp",
+  --   "hrsh7th/cmp-buffer",
+  --   "hrsh7th/cmp-path",
+  --   "numToStr/Comment.nvim",
+  --   "nvim-tree/nvim-tree.lua",
+  --   "nvim-telescope/telescope.nvim",
+  --   "nvim-treesitter/nvim-treesitter",
+  --   "nvim-telescope/telescope-fzf-native.nvim",
+  --   "folke/which-key.nvim",
+  -- },
 
   { "hashivim/vim-terraform" },
 
-  { "Exafunction/codeium.vim", event = "BufEnter" },
-
   { "nvim-tree/nvim-tree.lua", opts = overrides.nvimtree },
-
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "ron", "rust", "toml" })
-      end
-    end,
-  },
 
   { "simrat39/rust-tools.nvim", ft = { "rust" } },
 
   { "lewis6991/gitsigns.nvim", opts = overrides.gitsigns },
 
   {
+    "nvim-neotest/neotest",
+    optional = true,
+    dependencies = { "nvim-neotest/neotest-python", "rouge8/neotest-rust" },
+    opts = {
+      adapters = {
+        ["neotest-python"] = {
+          runner = "pytest",
+          python = ".venv/bin/python",
+        },
+        ["neotest-rust"] = {},
+      },
+    },
+  },
+
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       {
+        "Exafunction/codeium.vim",
+        cmd = "Codeium",
+        build = ":Codeium Auth",
+        event = "BufEnter",
+      },
+      {
         "Saecki/crates.nvim",
         event = { "BufRead Cargo.toml" },
-        opts = {
-          src = {
-            cmp = { enabled = true },
-          },
-        },
-      },
-    },
-    opts = function(_, opts)
-      local cmp = require "cmp"
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "crates" } }))
-    end,
-  },
-  {
-    "Saecki/crates.nvim",
-    event = { "BufRead Cargo.toml" },
-    opts = {
-      src = {
-        cmp = { enabled = true },
+        opts = { src = { cmp = { enabled = true } } },
       },
     },
   },
 
   {
     "mfussenegger/nvim-dap",
+    dependencies = {
+      {
+        "mfussenegger/nvim-dap-python",
+        ft = "python",
+        config = function()
+          local path = require("mason-registry").get_package("debugpy"):get_install_path()
+          require("dap-python").setup(path .. "/venv/bin/python")
+        end,
+      },
+
+      {
+        "rcarriga/nvim-dap-ui",
+        config = function()
+          require("dapui").setup()
+        end,
+      },
+
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        config = function()
+          require("nvim-dap-virtual-text").setup()
+        end,
+      },
+    },
     config = function()
       require "custom.configs.dap"
     end,
-  },
-
-  {
-    "rcarriga/nvim-dap-ui",
-    config = function()
-      require("dapui").setup()
-    end,
-    requires = { "mfussenegger/nvim-dap" },
-  },
-
-  {
-    "theHamsta/nvim-dap-virtual-text",
-    config = function()
-      require("nvim-dap-virtual-text").setup()
-    end,
-    requires = { "mfussenegger/nvim-dap" },
   },
 
   {
@@ -109,24 +136,54 @@ local plugins = {
     init = function()
       vim.g.rustfmt_autosave = 1
     end,
-    opts = {
-      tools = {
-        runnables = { use_telescope = true },
-        inlay_hints = {
-          auto = true,
-          show_parameter_hints = false,
-          parameter_hints_prefix = "",
-          other_hints_prefix = "",
+    opts = function()
+      local ok, mason_registry = pcall(require, "mason-registry")
+      local adapter ---@type any
+      if ok then
+        -- rust tools configuration for debugging support
+        local codelldb = mason_registry.get_package "codelldb"
+        local extension_path = codelldb:get_install_path() .. "/extension/"
+        local codelldb_path = extension_path .. "adapter/codelldb"
+        local liblldb_path = ""
+        if vim.loop.os_uname().sysname:find "Windows" then
+          liblldb_path = extension_path .. "lldb\\bin\\liblldb.dll"
+        elseif vim.fn.has "mac" == 1 then
+          liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
+        else
+          liblldb_path = extension_path .. "lldb/lib/liblldb.so"
+        end
+        adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
+      end
+      return {
+        dap = { adapter = adapter },
+        tools = {
+          runnables = { use_telescope = true },
+          inlay_hints = {
+            auto = true,
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+          },
+          on_initialized = function()
+            vim.cmd [[
+              augroup RustLSP
+                autocmd CursorHold                      *.rs silent! lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved,InsertEnter         *.rs silent! lua vim.lsp.buf.clear_references()
+                autocmd BufEnter,CursorHold,InsertLeave *.rs silent! lua vim.lsp.codelens.refresh()
+              augroup END
+            ]]
+          end,
         },
-      },
-    },
+      }
+    end,
   },
+
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
       "nvim-lua/plenary.nvim",
-      "folke/trouble.nvim",
+      { "folke/trouble.nvim", opts = { use_diagnostic_signs = true } },
     },
     build = "make",
     opts = { use_diagnostic_signs = true },
@@ -168,15 +225,40 @@ local plugins = {
   },
 
   {
+    "nvimtools/none-ls.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "williamboman/mason.nvim" },
+    lazy = false,
+    -- "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require "custom.configs.none-ls"
+      -- require "custom.configs.null-ls"
+    end,
+  },
+
+  {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      -- format & linting
-      {
-        "nvimtools/none-ls.nvim",
-        config = function()
-          require "custom.configs.none-ls"
-        end,
+    dependencies = { "nvimtools/none-ls.nvim" },
+    opts = {
+      -- options for vim.diagnostic.config()
+      diagnostics = {
+        underline = true,
+        update_in_insert = false,
+        -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
+        -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
+        -- prefix = "icons",
+        virtual_text = { spacing = 4, source = "if_many", prefix = "●" },
+        severity_sort = true,
       },
+      -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
+      -- Be aware that you also will need to properly configure your LSP server to
+      -- provide the inlay hints.
+      inlay_hints = { enabled = false },
+      -- add any global capabilities here
+      capabilities = {},
+      -- options for vim.lsp.buf.format
+      -- `bufnr` and `filter` is handled by the LazyVim formatter,
+      -- but can be also overridden when specified
+      format = { formatting_options = nil, timeout_ms = nil },
     },
     config = function()
       require "plugins.configs.lspconfig"
@@ -195,6 +277,10 @@ local plugins = {
         -- lua
         "lua-language-server",
         "stylua",
+
+        -- debug
+        "debugpy",
+        "codelldb",
 
         --python
         "black",
@@ -229,8 +315,11 @@ local plugins = {
         "typescript",
         "json",
         "python",
+        "hcl",
         "terraform",
         "rust",
+        "ron",
+        "toml",
       },
     },
   },

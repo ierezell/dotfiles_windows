@@ -11,10 +11,20 @@ M.general = {
     ["<leader>tl"] = { ":TroubleToggle loclist <CR>", "toggle trouble loclist" },
     ["gR"] = { ":TroubleToggle lsp_references <CR>", "toggle trouble references" },
     ["<leader>gg"] = { ":LazyGit <CR>", "open lazygit" },
+    ["<leader>dPt"] = {
+      function()
+        require("dap-python").test_method()
+      end,
+      "Debug Method",
+    },
+    ["<leader>dPc"] = {
+      function()
+        require("dap-python").test_class()
+      end,
+      "Debug Class",
+    },
   },
-  v = {
-    [">"] = { ">gv", "indent" },
-  },
+  v = { [">"] = { ">gv", "indent" } },
 }
 
 -- more keybinds!

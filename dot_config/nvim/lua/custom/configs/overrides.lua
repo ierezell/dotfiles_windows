@@ -15,11 +15,16 @@ M.treesitter = {
     "markdown",
     "markdown_inline",
   },
-  indent = {
+  highlight = { enable = true },
+  indent = { enable = true },
+  incremental_selection = {
     enable = true,
-    -- disable = {
-    --   "python"
-    -- },
+    keymaps = {
+      init_selection = "<C-space>",
+      node_incremental = "<C-space>",
+      scope_incremental = false,
+      node_decremental = "<bs>",
+    },
   },
 }
 

@@ -1,4 +1,4 @@
---- This file load the lsp-plugin and allow you to override / setup. 
+--- This file load the lsp-plugin and allow you to override / setup.
 --- Plugin is defined in plugins.lua with {"lsp", opt={}}
 
 local default_on_attach = require("plugins.configs.lspconfig").on_attach
@@ -29,7 +29,19 @@ lspconfig.rust_analyzer.setup {
   root_dir = util.root_pattern "Cargo.toml",
   settings = {
     ["rust-analyzer"] = {
-      cargo = { allFeatures = true },
+      cargo = {
+        allFeatures = true,
+        loadOutDirsFromCheck = true,
+        runBuildScripts = true,
+      },
+      procMacro = {
+        enable = true,
+        ignored = {
+          ["async-trait"] = { "async_trait" },
+          ["napi-derive"] = { "napi" },
+          ["async-recursion"] = { "async_recursion" },
+        },
+      },
     },
   },
 }
