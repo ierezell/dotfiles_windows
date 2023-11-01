@@ -1,6 +1,11 @@
+--- This file load the lsp-plugin and allow you to override / setup. 
+--- Plugin is defined in plugins.lua with {"lsp", opt={}}
+
 local default_on_attach = require("plugins.configs.lspconfig").on_attach
 local default_capabilities = require("plugins.configs.lspconfig").capabilities
 
+--- lspconfig is lsp_plugin.opt.servers options
+--- setup is lspconfig.opt.setup options
 local lspconfig = require "lspconfig"
 local util = require "lspconfig/util"
 
