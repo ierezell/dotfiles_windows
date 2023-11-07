@@ -324,8 +324,8 @@ for_window [class=(?i)firefox] focus
 for_window [class=Thunar] focus
 
 # start a terminal
-bindsym $mod+Return exec termite
-bindsym $mod2+Return exec termite 
+bindsym $mod+Return exec alacritty
+bindsym $mod2+Return exec alacritty
 
 
 # kill focused window
@@ -335,8 +335,8 @@ bindsym $mod2+Shift+q kill
 # Rofi Menu
 bindsym $mod+d exec "rofi -show drun -config ~/.config/rofi/rofidmenu.rasi"
 bindsym $mod2+d exec "rofi -show drun -config ~/.config/rofi/rofidmenu.rasi"
-# bindsym $mod+Tab exec "rofi -show window -terminal /usr/bin/termite"
-# bindsym $mod2+Tab exec "rofi -show window -terminal /usr/bin/termite"
+# bindsym $mod+Tab exec "rofi -show window -terminal /usr/bin/alacritty"
+# bindsym $mod2+Tab exec "rofi -show window -terminal /usr/bin/alacritty"
 bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard -config ~/.config/rofi/rofidmenu.rasi
 exec --no-startup-id greenclip daemon>/dev/null
 
