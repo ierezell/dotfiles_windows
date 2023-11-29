@@ -361,14 +361,14 @@ bindsym $mod2+bracketleft exec playerctl previous
 # Start applications
 bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec thunar
-bindsym $mod+F4 exec termite -e ranger
+bindsym $mod+F4 exec alacritty -e ranger
 bindsym $mod+F6 exec spotify
-bindsym $mod+F7 exec termite -e mpsyt
+bindsym $mod+F7 exec alacritty -e mpsyt
 bindsym $mod2+F2 exec firefox
 bindsym $mod2+F3 exec thunar
-bindsym $mod2+F4 exec termite -e ranger
+bindsym $mod2+F4 exec alacritty -e ranger
 bindsym $mod2+F5 exec spotify
-bindsym $mod2+F7 exec termite -e mpsyt
+bindsym $mod2+F7 exec alacritty -e mpsyt
 bindsym $mod+Shift+z exec ~/.config/i3/scripts/blur-lock
 
 # Wallpapers
