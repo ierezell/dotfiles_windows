@@ -203,16 +203,16 @@ set $ws9 "9"
 set $ws10 "0"
 
 # Set default workspace on screens.
-workspace $ws1 output $ecran
-workspace $ws2 output $ecran
-workspace $ws3 output $ecran
-workspace $ws4 output $ecran
-workspace $ws5 output $ecran
-workspace $ws6 output $ecran2
-workspace $ws7 output $ecran2
-workspace $ws8 output $ecran2
-workspace $ws9 output $ecran2
-workspace $ws10 output $ecran2
+workspace $ws1 output $ecran2
+workspace $ws2 output $ecran2
+workspace $ws3 output $ecran2
+workspace $ws4 output $ecran2
+workspace $ws5 output $ecran2
+workspace $ws6 output $ecran
+workspace $ws7 output $ecran
+workspace $ws8 output $ecran
+workspace $ws9 output $ecran
+workspace $ws10 output $ecran
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
