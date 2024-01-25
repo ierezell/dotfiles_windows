@@ -1,0 +1,251 @@
+{
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+    "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.formatOnType": true
+    },
+    "python.languageServer": "Pylance",
+    "[json]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "workbench.iconTheme": "vscode-icons",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "keyboard.dispatch": "keyCode",
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.leader": "<space>",
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [],
+    "vim.insertModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "ctrl",
+                "n"
+            ],
+            "commands": [
+                "workbench.files.action.focusFilesExplorer"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "f"
+            ],
+            "after": [],
+            "commands": [
+                "find-it-faster.findFiles"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "p"
+            ],
+            "after": [
+                "\"",
+                "0",
+                "p"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "\"",
+                "_",
+                "d"
+            ]
+        },
+        {
+            "before": [
+                "ctrl",
+                "n"
+            ],
+            "commands": [
+                "workbench.files.action.focusFilesExplorer"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "t",
+                "t"
+            ],
+            "commands": [
+                "workbench.focus.problems"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "m"
+            ],
+            "commands": [
+                "workbench.format"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "d"
+            ],
+            "commands": [
+                "go declaration"
+            ]
+        },
+        {
+            "before": [
+                "t",
+                "h"
+            ],
+            "commands": [
+                "toggle hover"
+            ]
+        }
+    ],
+    "vim.handleKeys": {
+        // "<C-a>": false,
+        "<C-f>": false,
+        // "<C-c>": false,
+        // "<C-v>": false,
+        "<C-z>": false,
+        "<C-w>": false,
+        // "<C-d>": false,
+        // "<C-x>": false
+    },
+    "files.autoSave": "onFocusChange",
+    "window.menuBarVisibility": "classic",
+    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "editor.lineNumbers": "relative",
+    "vim.highlightedyank.enable": true,
+    "vim.statusBarColorControl": true,
+    "workbench.colorCustomizations": {
+        "inlineChat.background": "#000000",
+        "inlineChatInput.background": "#1F1F1F",
+        "inlineChatInput.focusBorder": "#949E99",
+        "inlineChat.regionHighlight": "#2F2F2F",
+        "statusBar.background": "#005f5f",
+        "statusBar.noFolderBackground": "#005f5f",
+        "statusBar.debuggingBackground": "#005f5f",
+        "statusBar.foreground": "#ffffff",
+        "statusBar.debuggingForeground": "#ffffff"
+    },
+    "vim.camelCaseMotion.enable": true,
+    "git.autofetch": true,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "editor.fontLigatures": false,
+    "vim.easymotionMarkerForegroundColorOneChar": "rgba(250, 0, 0, 0.7)",
+    "editor.minimap.enabled": false,
+    "extensions.ignoreRecommendations": false,
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.typeCheckingMode": "strict",
+    "autoDocstring.docstringFormat": "numpy",
+    "cSpell.userWords": [
+        "autofetch",
+        "easymotion",
+        "getprevious",
+        "neovim",
+        "numpy",
+        "nvim",
+        "Parens",
+        "pytest",
+        "rgba"
+    ],
+    "cSpell.language": "en,fr",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]"
+    ],
+    "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
+    "python.analysis.diagnosticMode": "workspace",
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.inlineSuggest.enabled": true,
+    "files.associations": {
+        "*.py": "python"
+    },
+    "python.diagnostics.sourceMapsEnabled": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "jupyter.askForKernelRestart": false,
+    "redhat.telemetry.enabled": false,
+    "remote.SSH.remotePlatform": {
+        "BIO-SERVER-1": "linux"
+    },
+    "jupyter.interactiveWindow.creationMode": "single",
+    "npm.enableRunFromFolder": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit",
+        "source.organizeImports": "explicit"
+    },
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "workbench.editorLargeFileConfirmation": 100,
+    "yaml.schemas": {
+        "file:///home/pierre/.vscode-server/extensions/atlassian.atlascode-3.0.9/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "remote.SSH.defaultExtensions": [
+        "gitpod.gitpod-remote-ssh"
+    ],
+    "editor.formatOnSave": true,
+    "svelte.enable-ts-plugin": true,
+    "notebook.output.scrolling": true,
+    "inlineChat.showDiff": true,
+    "python.analysis.inlayHints.callArgumentNames": "all",
+    "rust-analyzer.completion.fullFunctionSignatures.enable": true,
+    "rust-analyzer.hover.actions.references.enable": true,
+    "rust-analyzer.inlayHints.closureCaptureHints.enable": true,
+    "rust-analyzer.inlayHints.bindingModeHints.enable": true,
+    "rust-analyzer.inlayHints.closureReturnTypeHints.enable": "always",
+    "rust-analyzer.interpret.tests": true,
+    "rust-analyzer.lens.references.adt.enable": true,
+    "rust-analyzer.lens.references.enumVariant.enable": true,
+    "rust-analyzer.lens.references.method.enable": true,
+    "rust-analyzer.lens.references.trait.enable": true,
+    "editor.codeActionWidget.includeNearbyQuickFixes": true,
+    "vim.neovimUseConfigFile": true,
+    "vim.neovimConfigPath": "~/.config/nvim/init.lua",
+    "python.analysis.inlayHints.pytestParameters": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "rust-analyzer.inlayHints.expressionAdjustmentHints.enable": "always",
+    "rust-analyzer.inlayHints.discriminantHints.enable": "always",
+    "rust-analyzer.inlayHints.closureStyle": "rust_analyzer",
+    "vim.enableNeovim": true,
+    "vim.showMarksInGutter": true,
+    "vim.smartRelativeLine": true,
+    "git.openRepositoryInParentFolders": "always",
+    "firedbg.showWelcome": false,
+    "window.zoomLevel": -1,
+    "githubPullRequests.pullBranch": "never",
+}
