@@ -394,7 +394,7 @@ exec --no-startup-id blueberry-tray
 ####################
 # exec setxkbmap -option caps:swapescape & # Swap ESC and MAJ
 exec_always --no-startup-id picom -b # Fading and transparency (check .config/picom)
-exec_always --no-startup-id xrandr --output $ecran --auto --output $ecran2 --mode 1920x1080 --right-of $ecran
+exec_always --no-startup-id xrandr --output $ecran --auto --output $ecran2 --mode 1920x1080 --left-of $ecran
 exec_always --no-startup-id wal -i ~/dotfiles/Wallpapers/1920_1080 --saturate 0.6 & # Set wallpapers and all desktop color (from wallpaper colors)
 
 ############################################
