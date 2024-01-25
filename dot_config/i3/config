@@ -373,7 +373,7 @@ bindsym $mod+Shift+z exec ~/.config/i3/scripts/blur-lock
 
 # Wallpapers
 #bindsym $mod+Ctrl+w exec feh --recursive --randomize --bg-max --no-fehbg /mnt/Documents/Images/Wallpapers/1920_1080/* &
-bindsym $mod+Ctrl+w exec wal -i ~/dotfiles/Wallpapers/1920_1080 --saturate 0.4 
+bindsym $mod+Ctrl+w exec wal -i ~/.wallpapers/1920_1080 --saturate 0.4 
 
 # Screenshot 
 bindsym Print exec scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
