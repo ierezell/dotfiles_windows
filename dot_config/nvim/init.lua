@@ -216,7 +216,7 @@ require('lazy').setup({
   },
 
   require 'autoformat',
-  -- require 'debug',
+  require 'code.debug',
 }, {})
 
 -- [[ Setting options ]]
