@@ -144,6 +144,7 @@ fi
 #fpath=(~/.zsh.d/ $fpath)
 
 export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
