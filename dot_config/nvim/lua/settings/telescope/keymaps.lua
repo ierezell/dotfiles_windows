@@ -27,7 +27,7 @@ local function live_grep_git_root()
     local git_root = find_git_root()
     if git_root then
         require('telescope.builtin').live_grep {
-            search_dirs = {git_root}
+            search_dirs = { git_root }
         }
     end
 end
@@ -38,6 +38,26 @@ local function telescope_live_grep_open_files()
         prompt_title = 'Live Grep in Open Files'
     }
 end
+
+-- Load the telescope file browser extension
+require("telescope").load_extension "file_browser"
+
+vim.keymap.set("n", "<space>fb",
+    ":Telescope file_browser<CR>",
+    { desc = '[?] Open the file browser' }
+)
+
+-- open file_browser with the path of the current buffer
+vim.keymap.set("n", "<space>fb",
+    ":Telescope file_browser path=%:p:h select_buffer=true<CR>",
+    { desc = '[?] Open the file browser' }
+)
+
+-- Alternatively, using lua API
+vim.keymap.set("n", "<space>fb",
+    function() require("telescope").extensions.file_browser.file_browser() end,
+    { desc = '[?] Open the file browser' }
+)
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
