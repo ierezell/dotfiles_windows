@@ -324,8 +324,8 @@ for_window [class=(?i)firefox] focus
 for_window [class=Thunar] focus
 
 # start a terminal
-bindsym $mod+Return exec alacritty
-bindsym $mod2+Return exec alacritty
+bindsym $mod+Return exec kitty
+bindsym $mod2+Return exec kitty
 
 
 # kill focused window
