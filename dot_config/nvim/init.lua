@@ -1,12 +1,12 @@
 -- Set <space> as the leader key
 -- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+-- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- [[ Install `lazy.nvim` plugin manager ]]
---    https://github.com/folke/lazy.nvim
---    `:help lazy.nvim.txt` for more info
+-- https://github.com/folke/lazy.nvim
+-- `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -14,42 +14,39 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath
   }
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure plugins ]]
--- NOTE: Here is where you install your plugins.
---  You can configure plugins using the `config` key.
---
---  You can also configure plugins after the setup call,
---  as they will be available in your neovim runtime.
+-- You can configure plugins using the `config` key.
+-- You can also configure plugins after the setup call,
+-- as they will be available in your neovim runtime.
 require('lazy').setup(
   {
-    -- NOTE: First, some plugins that don't require any configuration
-    -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-    --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-    --    up-to-date with whatever is in the kickstart repo.
-    --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-    --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-    --
-    -- [
-    --     GitSigns : Adds git related signs to the gutter, as well as utilities for managing changes
-    --     Debug : add debugger support
-    --     AutoFormat : add autoformatting
-    --     AutoPairs : add autopairs
-    -- ]
     { import = 'lazy_plugins' },
-    --
-    'tpope/vim-fugitive',                                                                                    -- Git related plugins
-    'tpope/vim-rhubarb',                                                                                     -- Detect tabstop and shiftwidth automatically
+    'tpope/vim-fugitive',                             -- Git related plugins
+    'tpope/vim-rhubarb',                              -- Detect tabstop and shiftwidth automatically
     'tpope/vim-sleuth',
-    { 'folke/which-key.nvim',            opts = {} },                                                        -- Useful plugin to show you pending keybinds.
-    { 'navarasu/onedark.nvim',           priority = 1000,                                                config = function()
-      vim.cmd.colorscheme 'onedark' end },                                                                   -- Theme inspired by Atom
-    { 'numToStr/Comment.nvim',           opts = {} },                                                        -- Highlight, edit, and navigate code
+    { 'folke/which-key.nvim',            opts = {} }, -- Useful plugin to show you pending keybinds.
+    { 'numToStr/Comment.nvim',           opts = {} }, -- Highlight, edit, and navigate code
     { 'nvim-treesitter/nvim-treesitter', dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' }, build = ':TSUpdate' },
-    -- NOTE: This is where your plugins related to LSP can be installed.
-    --  The configuration is done below. Search for lspconfig to find it below.
+    {
+      'goolord/alpha-nvim', -- Start-up menu
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      config = function()
+        require 'alpha'.setup(require 'alpha.themes.dashboard'.config)
+      end
+    },
+    {
+      -- Float or stack terminal
+      { 'akinsho/toggleterm.nvim', version = "*", config = true }
+    },
+    {
+      'navarasu/onedark.nvim', -- Theme inspired by Atom
+      priority = 1000,
+      config = function()
+        vim.cmd.colorscheme 'onedark'
+      end
+    },
     {
       ---------------------------------
       -- LSP Configuration & Plugins --
@@ -62,8 +59,8 @@ require('lazy').setup(
         -- Useful status updates for LSP
         -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
         -- Additional lua configuration, makes nvim stuff amazing!
+        'folke/neodev.nvim',
         { 'j-hui/fidget.nvim',       opts = {} },
-        'folke/neodev.nvim'
       }
     },
     {
@@ -72,10 +69,10 @@ require('lazy').setup(
       --------------------
       'hrsh7th/nvim-cmp',
       dependencies = {
-        'L3MON4D3/LuaSnip',                 -- Snippet Engine & its associated nvim-cmp source
-        'saadparwaiz1/cmp_luasnip',         -- Adds LSP completion capabilities
+        'L3MON4D3/LuaSnip',         -- Snippet Engine & its associated nvim-cmp source
+        'saadparwaiz1/cmp_luasnip', -- Adds LSP completion capabilities
         'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-path',                 -- Adds a number of user-friendly snippets
+        'hrsh7th/cmp-path',         -- Adds a number of user-friendly snippets
         'rafamadriz/friendly-snippets'
       }
     },
