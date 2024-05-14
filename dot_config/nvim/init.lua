@@ -58,8 +58,10 @@ require('lazy').setup(
         vim.cmd([[ autocmd FileType alpha setlocal nofoldenable ]])
       end
     },
+
+
+    -- Float or stack terminal
     {
-      -- Float or stack terminal
       {
         'akinsho/toggleterm.nvim',
         version = "*",
@@ -75,17 +77,20 @@ require('lazy').setup(
         }
       }
     },
+
+    -- Theme inspired by Atom
     {
-      'navarasu/onedark.nvim', -- Theme inspired by Atom
+      'navarasu/onedark.nvim',
       priority = 1000,
       config = function()
         vim.cmd.colorscheme 'onedark'
       end
     },
+
+    ---------------------------------
+    -- LSP Configuration & Plugins --
+    ---------------------------------
     {
-      ---------------------------------
-      -- LSP Configuration & Plugins --
-      ---------------------------------
       -- Automatically install LSPs to stdpath for neovim
       'neovim/nvim-lspconfig',
       dependencies = {
@@ -98,10 +103,11 @@ require('lazy').setup(
         { 'j-hui/fidget.nvim',       opts = {} },
       }
     },
+
+    --------------------
+    -- Autocompletion --
+    --------------------
     {
-      --------------------
-      -- Autocompletion --
-      --------------------
       'hrsh7th/nvim-cmp',
       dependencies = {
         'L3MON4D3/LuaSnip',         -- Snippet Engine & its associated nvim-cmp source
@@ -111,10 +117,11 @@ require('lazy').setup(
         'rafamadriz/friendly-snippets'
       }
     },
+
+    -------------------------------
+    -- Set lualine as statusline --
+    -------------------------------
     {
-      -------------------------------
-      -- Set lualine as statusline --
-      -------------------------------
       'nvim-lualine/lualine.nvim',
       -- See `:help lualine.txt`
       opts = {
@@ -126,10 +133,11 @@ require('lazy').setup(
         }
       }
     },
+
+    ------------------------------------------------
+    -- Add indentation guides even on blank lines --
+    ------------------------------------------------
     {
-      ------------------------------------------------
-      -- Add indentation guides even on blank lines --
-      ------------------------------------------------
       -- "gc" to comment visual regions/lines
       'lukas-reineke/indent-blankline.nvim',
       -- See `:help ibl`
