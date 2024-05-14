@@ -19,16 +19,6 @@ require('which-key').register(
     { mode = 'v' }
 )
 
-require("toggleterm").setup {
-    size = 20 | function(term)
-        if term.direction == "horizontal" then
-            return 15
-        elseif term.direction == "vertical" then
-            return vim.o.columns * 0.4
-        end
-    end,
-    open_mapping = [[<c-`>]]
-}
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
