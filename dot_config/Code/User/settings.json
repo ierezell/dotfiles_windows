@@ -6,7 +6,7 @@
     "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
     "[python]": {
         "editor.tabSize": 4,
-        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.defaultFormatter": "ms-python.black-formatter",
         "editor.formatOnType": true
     },
     "python.languageServer": "Pylance",
@@ -130,7 +130,7 @@
     },
     "files.autoSave": "onFocusChange",
     "window.menuBarVisibility": "classic",
-    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "workbench.colorTheme": "Gruvbox Dark Soft",
     "editor.lineNumbers": "relative",
     "vim.highlightedyank.enable": true,
     "vim.statusBarColorControl": true,
@@ -194,7 +194,8 @@
     },
     "editor.inlineSuggest.enabled": true,
     "files.associations": {
-        "*.py": "python"
+        "*.py": "python",
+        "*.sql": "jinja-sql"
     },
     "python.diagnostics.sourceMapsEnabled": true,
     "security.workspace.trust.untrustedFiles": "open",
@@ -248,4 +249,16 @@
     "firedbg.showWelcome": false,
     "window.zoomLevel": -1,
     "githubPullRequests.pullBranch": "never",
+    "prisma.showPrismaDataPlatformNotification": false,
+    "[jinja-sql]": {
+        "editor.defaultFormatter": "innoverio.vscode-dbt-power-user"
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "vs-kubernetes": {
+        "vscode-kubernetes.minikube-path-linux": "/home/pedro/.local/state/vs-kubernetes/tools/minikube/linux-amd64/minikube"
+    },
+    "eslint.format.enable": true,
+    "[typescript]": {
+        "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    },
 }
