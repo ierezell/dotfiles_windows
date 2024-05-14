@@ -71,7 +71,7 @@ require('lazy').setup(
               return vim.o.columns * 0.4
             end
           end,
-          open_mapping = [[<c-`>]]
+          open_mapping = [[<c-\`>]]
         }
       }
     },
