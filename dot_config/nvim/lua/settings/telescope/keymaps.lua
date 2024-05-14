@@ -54,9 +54,9 @@ vim.keymap.set("n", "<space>fb",
 )
 
 -- Alternatively, using lua API
-vim.keymap.set("n", "<space>fb",
+vim.keymap.set("n", "<space>sb",
     function() require("telescope").extensions.file_browser.file_browser() end,
-    { desc = '[?] Open the file browser' }
+    { desc = '[S]earch in [B]rowser' }
 )
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
