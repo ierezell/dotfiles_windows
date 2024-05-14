@@ -27,7 +27,7 @@ require("toggleterm").setup {
             return vim.o.columns * 0.4
         end
     end,
-    open_mapping = [[<c-`>]], -- or { [[<c-\>]], [[<c-¥>]] } if you also use a Japanese keyboard.
+    open_mapping = [[<c-`>]]
 }
 
 -- Keymaps for better default experience
