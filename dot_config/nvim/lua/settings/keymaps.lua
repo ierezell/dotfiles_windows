@@ -14,14 +14,25 @@ require('which-key').register {
 require('which-key').register(
     {
         ['<leader>'] = { name = 'VISUAL <leader>' },
-        ['<leader>h'] = {'Git [H]unk'} 
-    }, 
+        ['<leader>h'] = { 'Git [H]unk' }
+    },
     { mode = 'v' }
 )
 
+require("toggleterm").setup {
+    size = 20 | function(term)
+        if term.direction == "horizontal" then
+            return 15
+        elseif term.direction == "vertical" then
+            return vim.o.columns * 0.4
+        end
+    end,
+    open_mapping = [[<c-`>]], -- or { [[<c-\>]], [[<c-¥>]] } if you also use a Japanese keyboard.
+}
+
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
