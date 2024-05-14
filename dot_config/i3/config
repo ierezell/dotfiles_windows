@@ -15,7 +15,7 @@ set $mod2 Mod1
 
 # Set monitors
 set $ecran eDP1
-set $ecran2 DP1
+set $ecran2 HDMI1
 
 ## border indicator on windows:
 new_window pixel 1
