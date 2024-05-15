@@ -25,7 +25,7 @@ require('lazy').setup(
     { import = 'lazy_plugins' },
     'tpope/vim-fugitive',                             -- Git related plugins
     'tpope/vim-rhubarb',                              -- Detect tabstop and shiftwidth automatically
-    'tpope/vim-sleuth',
+    'tpope/vim-sleuth',                               -- Adapt tabs per file
     { 'folke/which-key.nvim',            opts = {} }, -- Useful plugin to show you pending keybinds.
     { 'numToStr/Comment.nvim',           opts = {} }, -- Highlight, edit, and navigate code
     { 'nvim-treesitter/nvim-treesitter', dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' }, build = ':TSUpdate' },
@@ -72,7 +72,6 @@ require('lazy').setup(
       dependencies = { "luarocks.nvim" },
       config = function() require("rest-nvim").setup() end,
     },
-
 
     -- Float or stack terminal
     {
