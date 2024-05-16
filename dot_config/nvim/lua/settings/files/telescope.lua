@@ -8,7 +8,7 @@ pcall(require("telescope").load_extension, "file_browser")
 
 -- Telescope live_grep in git root
 -- Function to find the git root directory based on the current buffer's path
-function find_git_root()
+function telescope_find_git_root()
     -- Use the current buffer's path as the starting point for the git search
     local current_file = vim.api.nvim_buf_get_name(0)
     local current_dir
@@ -31,12 +31,19 @@ function find_git_root()
 end
 
 -- Custom live_grep function to search in git root
-function live_grep_git_root()
-    local git_root = find_git_root()
-    if git_root then require('telescope.builtin').live_grep {search_dirs = {git_root}} end
+function telescope_live_grep_git_root()
+    local git_root = telescope_find_git_root()
+    if git_root then
+        require('telescope.builtin').live_grep {search_dirs = {git_root}}
+    end
 end
 
 function telescope_live_grep_open_files()
     require('telescope.builtin').live_grep {grep_open_files = true, prompt_title = 'Live Grep in Open Files'}
 end
 
+function telescope_fuzzy_find_in_current_buffer()
+    -- You can pass additional configuration to telescope to change theme, layout, etc.
+    require('telescope.builtin').current_buffer_fuzzy_find(
+        require('telescope.themes').get_dropdown {winblend = 10, previewer = false})
+end
