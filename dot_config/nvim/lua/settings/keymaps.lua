@@ -84,7 +84,8 @@ vim.keymap.set('n', '<F5>', require('dap').continue, {desc = 'Debug: Start/Conti
 vim.keymap.set('n', '<F1>', require('dap').step_into, {desc = 'Debug: Step Into'})
 vim.keymap.set('n', '<F2>', require('dap').step_over, {desc = 'Debug: Step Over'})
 vim.keymap.set('n', '<F3>', require('dap').step_out, {desc = 'Debug: Step Out'})
-vim.keymap.set('n', '<F7>', require('dapui').toggle, {desc = 'Debug: See last session result.'}) -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+vim.keymap.set('n', '<F7>', require('dapui').toggle, {desc = 'Debug: See last session result.'})
 vim.keymap.set('n', '<leader>cdb', require('dap').toggle_breakpoint, {desc = '[C]ode [D]ebug [B]reakpoint'})
 vim.keymap.set('n', '<leader>B', function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, {desc = '[D]ebug: Set [B]reakpoint'})
 
