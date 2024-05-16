@@ -31,6 +31,8 @@ vim.keymap.set('n', '[c', vim.diagnostic.goto_prev, {desc = 'Go to previous diag
 vim.keymap.set('n', ']c', vim.diagnostic.goto_next, {desc = 'Go to next diagnostic message'})
 vim.keymap.set('n', '<leader>ci', vim.diagnostic.open_float, {desc = 'Open floating diagnostic message'})
 vim.keymap.set('n', '<leader>cl', vim.diagnostic.setloclist, {desc = 'Open diagnostics list'})
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {noremap = true, silent = true})
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {noremap = true, silent = true})
 
 vim.keymap.set('n', '<leader>rr', "<cmd>Rest run<cr>", {desc = "Run the request under the cursor"})
 vim.keymap.set('n', '<leader>rr', "<cmd>Rest run last<cr>", {desc = "Re-Run latest request"})
@@ -44,14 +46,15 @@ vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 -- because they only work if you have an active language server
 vim.api.nvim_create_autocmd(
     'LspAttach', {
-        desc = 'LSP actions', callback = function(event)
+        desc = 'LSP actions', --
+        callback = function(event)
             -- Enable completion triggered by <c-x><c-o>
-            vim.api.nvim_buf_set_option(event.buf, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+            -- vim.api.nvim_buf_set_option(event.buf, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
             vim.keymap.set('n', 'K', vim.lsp.buf.hover, {buffer = event.buf, desc = '[K]Hover'})
             vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, {buffer = event.buf, desc = '[C-k]Signature help'})
             vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, {buffer = event.buf, desc = '[g]o to [s]ignature help'})
 
-            vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {buffer = event.buf, desc = '[R]e[n]ame'})
+            vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, {buffer = event.buf, desc = '[C]ode [R]ename'})
             vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, {buffer = event.buf, desc = '[F2]Rename'})
 
             vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {buffer = event.buf, desc = '[g]o to [d]efinition'})
@@ -71,11 +74,18 @@ vim.api.nvim_create_autocmd(
                 'n', '<leader>sws', require('telescope.builtin').lsp_dynamic_workspace_symbols, {buffer = event.buf, desc = '[s]earch [w]orkspace [s]ymbol'})
 
             vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {buffer = event.buf, desc = '[g]o to [D]eclaration'})
-            vim.keymap.set({'n', 'x'}, '<F3>', vim.lsp.buf.format({async = true}), {buffer = event.buf, desc = '[F]ix [F]ormat'})
-            vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format({async = true}), {buffer = event.buf, desc = '[C]ode [F]ormat'})
+            vim.keymap.set(
+                {'n', 'x'}, '<F3>', function()
+                    vim.lsp.buf.format({async = true})
+                end, {buffer = event.buf, desc = '[F]ix [F]ormat'})
+            vim.keymap.set(
+                'n', '<leader>cf', function()
+                    vim.lsp.buf.format({async = true})
+                end, {buffer = event.buf, desc = '[C]ode [F]ormat'})
             vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, {buffer = event.buf, desc = '[F]ix [A]ction'})
             vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, {buffer = event.buf, desc = '[C]ode [A]ction'})
-        end})
+        end --
+    })
 
 --       -----------
 --       -- Debug --
@@ -85,7 +95,7 @@ vim.keymap.set('n', '<F1>', require('dap').step_into, {desc = 'Debug: Step Into'
 vim.keymap.set('n', '<F2>', require('dap').step_over, {desc = 'Debug: Step Over'})
 vim.keymap.set('n', '<F3>', require('dap').step_out, {desc = 'Debug: Step Out'})
 vim.keymap.set('n', '<F7>', require('dapui').toggle, {desc = 'Debug: See last session result.'}) -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-vim.keymap.set('n', '<leader>b', require('dap').toggle_breakpoint, {desc = 'Debug: Toggle Breakpoint'})
+vim.keymap.set('n', '<leader>cdb', require('dap').toggle_breakpoint, {desc = '[C]ode [D]ebug [B]reakpoint'})
 vim.keymap.set(
     'n', '<leader>B', function()
         require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
@@ -112,7 +122,3 @@ vim.keymap.set(
         require("telescope").extensions.file_browser.file_browser({path = "%:p:h"})
     end, {desc = '[S]earch in [B]rowser'})
 
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, {noremap = true, silent = true})
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {noremap = true, silent = true})
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {noremap = true, silent = true})
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, {noremap = true, silent = true})
