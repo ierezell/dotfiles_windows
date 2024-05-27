@@ -14,5 +14,6 @@ cmp.setup(
                 ['<C-Space>'] = cmp.mapping.complete()              -- Ctrl + space triggers completion menu
             }                                                       --
         ),                                                          --
+        experimental = { ghost_text = true }
     }
 )
