@@ -5,6 +5,12 @@ require('neodev').setup()
 -- mason-lspconfig requires that these setup functions are called in this order
 
 -- To add/bind autocompletion capabilities to the LSP
+local navic = require("nvim-navic")
+local lsp_on_attach = function(client, bufnr)
+    	if client.server_capabilities.documentSymbolProvider then
+		navic.attach(client, bufnr)
+	end
+end
 
 require('mason-lspconfig').setup(
     {
@@ -23,11 +29,12 @@ require('mason-lspconfig').setup(
             "sqlls", --
             "tsserver" --
         }, --
-        on_attach = on_attach, --
+        -- on_attach done in keybindings. 
         handlers = {
             function(server)
                 require('lspconfig')[server].setup(
                     { --
+			on_attach = lsp_on_attach,
                         capabilities = require('cmp_nvim_lsp').default_capabilities( --
                             vim.lsp.protocol.make_client_capabilities()) --
                     })
