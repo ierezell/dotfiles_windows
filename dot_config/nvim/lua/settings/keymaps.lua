@@ -3,17 +3,17 @@
 require('which-key').register({ ['<leader>'] = { name = 'VISUAL <leader>' } }, { mode = 'v' })
 
 require('which-key').register {
-    ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' }, --
-    ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' }, --
-    ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' }, --
-    ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' }, --
-    ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' }, --
-    ['<leader>f'] = { name = '[F]loat', _ = 'which_key_ignore' }, --
-    ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' }, --
-    ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' }, --
+    ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },      --
+    ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },  --
+    ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },       --
+    ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },    --
+    ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },    --
+    ['<leader>f'] = { name = '[F]loat', _ = 'which_key_ignore' },     --
+    ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },    --
+    ['<leader>h'] = { name = '[H]arpoon', _ = 'which_key_ignore' },   --
     ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' }, --
-    ["["] = { name = 'Previous', _ = 'which_key_ignore' },      --
-    ["]"] = { name = 'Next', _ = 'which_key_ignore' }           --
+    ["["] = { name = 'Previous', _ = 'which_key_ignore' },            --
+    ["]"] = { name = 'Next', _ = 'which_key_ignore' }                 --
 }
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', telescope_live_grep_git_root, {})
@@ -50,6 +50,7 @@ vim.api.nvim_create_user_command('LiveGrepGitRoot', telescope_live_grep_git_root
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set('n', '<leader>tt', require("nvim-tree.api").tree.toggle, { desc = '[T]oggle [T]ree' })
 
 ------------
 -- [C]ode --
@@ -114,13 +115,14 @@ vim.keymap.set('n', '<leader>NG', require('neogit').open, { desc = '[N]eo[G]it' 
 -- these will be buffer-local keybindings
 -- because they only work if you have an active language server
 vim.api.nvim_create_autocmd('LspAttach', {
-    desc = 'LSP actions',                                       --
+    desc = 'LSP actions', --
     callback = function(event)
         -- Enable completion triggered by <c-x><c-o>
         -- vim.api.nvim_buf_set_option(event.buf, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = event.buf, desc = '[K]Hover' })
         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = event.buf, desc = '[C-k]Signature help' })
-        vim.keymap.set('n', '<leader>fs', vim.lsp.buf.signature_help, { buffer = event.buf, desc = '[f]loat [s]ignature' })
+        vim.keymap.set('n', '<leader>fs', vim.lsp.buf.signature_help,
+            { buffer = event.buf, desc = '[f]loat [s]ignature' })
 
         vim.keymap.set('n', '<leader>cr', vim.lsp.buf.rename, { buffer = event.buf, desc = '[C]ode [R]ename' })
         vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, { buffer = event.buf, desc = '[F2]Rename' })
