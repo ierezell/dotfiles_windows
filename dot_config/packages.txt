@@ -3,6 +3,7 @@ bat
 blueman
 bluez
 bluez-utils
+catppuccin-gtk-theme-macchiato
 eza
 firefox-developer-edition
 fzf
