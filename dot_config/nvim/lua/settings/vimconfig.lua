@@ -14,7 +14,8 @@ vim.o.mouse = 'a'
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+vim.opt.clipboard='unnamedplus'
+vim.o.clipboard='unnamedplus'
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -42,3 +43,7 @@ vim.o.termguicolors = true
 vim.o.scrolloff = 15
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with( vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false, signs=false })
 vim.diagnostic.config({virtual_text = false, signs=false})
+
+
+-- Remap <Esc> to <C-\><C-n> in terminal mode (for toggleterm)
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
