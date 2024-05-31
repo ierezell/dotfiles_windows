@@ -47,3 +47,8 @@ vim.diagnostic.config({virtual_text = false, signs=false})
 
 -- Remap <Esc> to <C-\><C-n> in terminal mode (for toggleterm)
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+
+-- Map Ctrl-S to save the current buffer
+vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>',{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '<C-s>', '<C-o>:w<CR>',{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<C-s>', '<C-c>:w<CR>', { noremap = true, silent = true })
