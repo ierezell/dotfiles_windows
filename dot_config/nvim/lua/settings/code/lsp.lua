@@ -17,7 +17,6 @@ require('mason-lspconfig').setup(
         automaric_installation = true, --
         ensure_installed = {
             "rust_analyzer@nightly", --
-            "typos_lsp", --
             "pyright", --
             "lua_ls", --
             "csharp_ls", -- 
