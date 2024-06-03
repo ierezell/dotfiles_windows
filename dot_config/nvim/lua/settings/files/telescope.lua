@@ -5,6 +5,7 @@ require('telescope').setup {defaults = {mappings = {i = {['<C-u>'] = false, ['<C
 pcall(require('telescope').load_extension, 'fzf')
 -- Load the telescope file browser extension
 pcall(require("telescope").load_extension, "file_browser")
+pcall(require("telescope").load_extension, "noice")
 
 -- Telescope live_grep in git root
 -- Function to find the git root directory based on the current buffer's path
