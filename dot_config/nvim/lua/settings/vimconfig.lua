@@ -59,11 +59,9 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagn
 
 vim.diagnostic.config({ virtual_text = false, signs = false })
 
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', {clear = true})
+vim.api.nvim_create_autocmd('TextYankPost',
+    {callback = function() vim.highlight.on_yank() end, group = highlight_group, pattern = '*'})
 
--- Remap <Esc> to <C-\><C-n> in terminal mode (for toggleterm)
-vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
-
--- Map Ctrl-S to save the current buffer
-vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-s>', '<C-o>:w<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('v', '<C-s>', '<C-c>:w<CR>', { noremap = true, silent = true })

@@ -1,4 +1,3 @@
-require 'settings.ui.highlight'
 require 'settings.ui.alpha'
 require 'settings.ui.noice'
 require 'settings.ui.edgy'

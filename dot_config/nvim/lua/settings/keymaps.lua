@@ -51,6 +51,13 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set('n', '<leader>tt', require("nvim-tree.api").tree.toggle, { desc = '[T]oggle [T]ree' })
+-- Remap <Esc> to <C-\><C-n> in terminal mode (for toggleterm)
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+
+-- Map Ctrl-S to save the current buffer
+vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-s>', '<C-o>:w<CR>', { noremap = true, silent = true })
+vim.keymap.set('v', '<C-s>', '<C-c>:w<CR>', { noremap = true, silent = true })
 
 ------------
 -- [C]ode --
@@ -156,5 +163,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { buffer = event.buf, desc = '[C]ode [F]ormat' })
         vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, { buffer = event.buf, desc = '[F]ix [A]ction' })
         vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { buffer = event.buf, desc = '[C]ode [A]ction' })
+
     end --
 })
