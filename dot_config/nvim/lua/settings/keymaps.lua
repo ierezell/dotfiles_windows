@@ -51,6 +51,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 vim.keymap.set('n', '<leader>tt', require("nvim-tree.api").tree.toggle, { desc = '[T]oggle [T]ree' })
+vim.keymap.set('n', '<leader>te', require("edgy").toggle, { desc = '[T]oggle [Edgy]' })
 -- Remap <Esc> to <C-\><C-n> in terminal mode (for toggleterm)
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
 
@@ -67,10 +68,9 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev,
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next,
     { desc = 'Go to next [d]iagnostic message', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>fd', vim.diagnostic.open_float, { desc = 'Open [f]loating [d]iagnostic' })
-vim.keymap.set('n', '<leader>ld', function() require("trouble").toggle("document_diagnostics") end,
-    { desc = '[l]ist [d]iagnostics' })
-vim.keymap.set('n', '<leader>lwd', function() require("trouble").toggle("workspace_diagnostics") end,
-    { desc = '[l]ist [w]orkspace [d]iagnostics' })
+vim.keymap.set('n', '<leader>ld', function() require("trouble").toggle("diagnostics") end, { desc = '[l]ist [d]iagnostics' })
+vim.keymap.set('n', '<leader>ts', function() require("trouble").toggle("symbols") end, { desc = '[t]oggle [s]ymbols' })
+vim.keymap.set('n', '<leader>tl', function() require("trouble").toggle("lsp") end, { desc = '[t]oggle [l]sp' })
 vim.keymap.set('n', '<leader>lq', function() require("trouble").toggle("quickfix") end, { desc = '[l]ist [q]uickfix' })
 vim.keymap.set('n', '<leader>ll', function() require("trouble").toggle("loclist") end, { desc = '[l]ist [l]oclist' })
 vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end, { desc = '[g]o to [R]eferences' })
