@@ -26,7 +26,8 @@ require('mason-lspconfig').setup(
             "ruff", --
             "ruff_lsp", --
             "sqlls", --
-            "tsserver" --
+            "tsserver", --
+            "prismals" --
         }, --
         -- on_attach done in keybindings. 
         handlers = {
