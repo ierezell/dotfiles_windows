@@ -11,6 +11,6 @@ return {
   config = function()
     require("nvim-tree").setup {}
     require("lsp-file-operations").setup()
-    require("nvim-tree-preview").setup()
+    -- require("nvim-tree-preview").setup()
   end,
 }
