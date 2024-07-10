@@ -6,7 +6,7 @@ return {
     'nvim-lua/plenary.nvim',
     "antosha417/nvim-lsp-file-operations",
     "nvim-tree/nvim-web-devicons",
-    'b0o/nvim-tree-preview.lua',
+    -- 'b0o/nvim-tree-preview.lua',
   },
   config = function()
     require("nvim-tree").setup {}
