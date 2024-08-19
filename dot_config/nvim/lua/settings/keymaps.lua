@@ -1,8 +1,12 @@
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
-require('which-key').register({ "<leader>", group = "VISUAL <leader>", mode = "v" })
+local wk = require("which-key")
 
-require('which-key').register {
+wk.add({
+    { "<leader>", group = "VISUAL <leader>", mode = "v" }
+})
+
+wk.add({
     { "<leader>c", group = "[C]ode" },
     { "<leader>c_", hidden = true },
     { "<leader>d", group = "[D]ocument" },
@@ -25,7 +29,7 @@ require('which-key').register {
     { "[_", hidden = true },
     { "]", group = "Next" },
     { "]_", hidden = true },
-}
+})
 
 vim.api.nvim_create_user_command('LiveGrepGitRoot', telescope_live_grep_git_root, {})
 --------------------------
