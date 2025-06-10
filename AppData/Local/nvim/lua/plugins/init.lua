@@ -1,6 +1,7 @@
-return {{
+return {
+    {
     import = 'plugins.code'
-}, -- Tab & indent related plugins
+}, 
 {
     import = 'plugins.ui'
 }, -- Git related plugins
@@ -8,4 +9,5 @@ return {{
     import = 'plugins.files'
 }, {
     import = 'plugins.misc'
-}}
+}
+}

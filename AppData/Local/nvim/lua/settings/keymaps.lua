@@ -2,7 +2,7 @@
 -- required for visual <leader>hs (hunk stage) to work
 local wk = require("which-key")
 
-wk.add({
+wk.add({ 
     { "<leader>", group = "VISUAL <leader>", mode = "v" }
 })
 
