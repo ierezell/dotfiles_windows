@@ -3,16 +3,23 @@
   "app_specific_configuration_path": "$Env:USERPROFILE/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
-  "default_workspace_padding": 20,
-  "default_container_padding": 20,
+  "default_workspace_padding": 3,
+  "default_container_padding": 3,
   "border": true,
-  "border_width": 8,
+  "border_width": 4,
   "border_offset": -1,
+  "border_style": "System",
   "theme": {
     "palette": "Base16",
     "name": "Ashes",
     "unfocused_border": "Base03",
     "bar_accent": "Base0D"
+  },
+  "animation": {
+    "enabled": true,
+    "duration": 250,
+    "fps": 60,
+    "style": "EaseOutSine"
   },
   "monitors": [
     {
@@ -28,21 +35,25 @@
         {
           "name": "III",
           "layout": "HorizontalStack"
-        },
+        }
+      ]
+    },
+    {
+      "workspaces": [
         {
-          "name": "IV",
+          "name": "I",
           "layout": "UltrawideVerticalStack"
         },
         {
-          "name": "V",
+          "name": "II",
           "layout": "Rows"
         },
         {
-          "name": "VI",
+          "name": "III",
           "layout": "Grid"
         },
         {
-          "name": "VII",
+          "name": "IV",
           "layout": "RightMainVerticalStack"
         }
       ]
